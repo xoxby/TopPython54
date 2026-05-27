@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-05-27T07:22:22Z",
+  "source": "https://jsonplaceholder.typicode.com/posts",
+  "summary": {
+    "total_posts": 100,
+    "avg_body_length": 160.64,
+    "most_active_user_id": 1,
+    "median_title_length": 38.5
+  },
+  "posts_per_user": [
+    {
+      "userId": 1,
+      "posts_count": 10
+    },
+    {
+      "userId": 2,
+      "posts_count": 10
+    },
+    {
+      "userId": 3,
+      "posts_count": 10
+    },
+    {
+      "userId": 4,
+      "posts_count": 10
+    },
+    {
+      "userId": 5,
+      "posts_count": 10
+    },
+    {
+      "userId": 6,
+      "posts_count": 10
+    },
+    {
+      "userId": 7,
+      "posts_count": 10
+    },
+    {
+      "userId": 8,
+      "posts_count": 10
+    },
+    {
+      "userId": 9,
+      "posts_count": 10
+    },
+    {
+      "userId": 10,
+      "posts_count": 10
+    }
+  ],
+  "top_longest_posts": [
+    {
+      "id": 63,
+      "userId": 7,
+      "total_length": 279
+    }
+  ]
+}
