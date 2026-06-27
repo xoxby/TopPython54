@@ -1,0 +1,208 @@
+1. Вывести данные о товаре в алфавитном порядке.
+SELECT Goods
+FROM SallerGoods
+ORDER BY Goods
+
+2. Вывести посредников, поставляющих товар для фирмы.
+SELECT DISTINCT Seller
+FROM Seller INNER JOIN SallerGoods
+ON Seller.INNSeller = SallerGoods.INNSeller
+WHERE Seller.Status = 'посредник'
+
+3. На какую сумму было всего куплено каждого товара фирмой.
+SELECT Goods, SUM(CostUnit * Count)
+FROM SallerGoods
+GROUP BY Goods
+
+4. Определить какой товар был куплен у посредников.
+SELECT DISTINCT Goods
+FROM SallerGoods INNER JOIN Seller
+ON SallerGoods.INNSeller = Seller.INNSeller
+WHERE Seller.Status = 'посредник'
+
+5. Написать запрос, который выводит название товара и прибыль, полученную от его продажи.
+SELECT SallerGoods.Goods, SUM((ClientGoods.CostUnit - SallerGoods.CostUnit) * ClientGoods.Count)
+FROM SallerGoods INNER JOIN ClientGoods
+ON SallerGoods.ID = ClientGoods.ID
+GROUP BY SallerGoods.Goods
+
+6. Определите какие клиенты не покупали подсолнечное масло.
+SELECT Client
+FROM Client
+WHERE INNClient NOT IN (
+    SELECT ClientGoods.INNClient
+    FROM ClientGoods INNER JOIN SallerGoods
+    ON ClientGoods.ID = SallerGoods.ID
+    WHERE SallerGoods.Goods = 'масло подсолнечное'
+)
+
+7. Показать код и наименование товара, купленного посредниками.
+SELECT DISTINCT SallerGoods.Code, SallerGoods.Goods
+FROM SallerGoods INNER JOIN ClientGoods
+ON SallerGoods.ID = ClientGoods.ID
+INNER JOIN Client
+ON ClientGoods.INNClient = Client.INNClient
+WHERE Client.Status = 'посредник'
+
+8. Вывести список клиентов и сумму прибыли за каждый товар, полученную от продажи черного перца.
+SELECT Client.Client, SallerGoods.Goods, (ClientGoods.CostUnit - SallerGoods.CostUnit) * ClientGoods.Count
+FROM ClientGoods INNER JOIN Client
+ON ClientGoods.INNClient = Client.INNClient
+INNER JOIN SallerGoods
+ON ClientGoods.ID = SallerGoods.ID
+WHERE SallerGoods.Goods LIKE 'Перец черный%'
+
+9. Выведите список товаров в обратном порядке, если товар куплен у производителя и продан в кафе.
+SELECT SallerGoods.Goods
+FROM SallerGoods INNER JOIN Seller
+ON SallerGoods.INNSeller = Seller.INNSeller
+INNER JOIN ClientGoods
+ON SallerGoods.ID = ClientGoods.ID
+INNER JOIN Client
+ON ClientGoods.INNClient = Client.INNClient
+WHERE Seller.Status LIKE 'производ%' AND Client.Status = 'кафе'
+ORDER BY SallerGoods.Goods DESC
+
+10. Сосчитать количество клиентов, покупающих товар.
+SELECT COUNT(DISTINCT INNClient)
+FROM ClientGoods
+
+11. Сколько посредников поставляют товар для фирмы.
+SELECT COUNT(DISTINCT Seller.INNSeller)
+FROM Seller INNER JOIN SallerGoods
+ON Seller.INNSeller = SallerGoods.INNSeller
+WHERE Seller.Status = 'посредник'
+
+12. Вывести среднюю сумму сделки по проданному товару.
+SELECT AVG(CostUnit * Count)
+FROM ClientGoods
+
+13. Посчитать на какую сумму было всего поставлено товара.
+SELECT SUM(CostUnit * Count)
+FROM SallerGoods
+
+14. Определите максимальное количество закупленного товара шт.(кг).
+SELECT MAX(Count)
+FROM SallerGoods
+
+15. Какая минимальная сумма покупки, на которую клиент сделал заказ.
+SELECT MIN(CostUnit * Count)
+FROM ClientGoods
+
+16. Посчитать на какую сумму было продано товара магазинам.
+SELECT SUM(ClientGoods.CostUnit * ClientGoods.Count)
+FROM ClientGoods INNER JOIN Client
+ON ClientGoods.INNClient = Client.INNClient
+WHERE Client.Status = 'магазин'
+
+17. Сосчитать общее количество видов закупленных фирмой вафель.
+SELECT COUNT(DISTINCT Goods)
+FROM SallerGoods
+WHERE Goods LIKE 'Вафли%'
+
+18. Выведите среднюю цену на растительное масло (закупочную).
+SELECT AVG(CostUnit)
+FROM SallerGoods
+WHERE Goods IN ('масло подсолнечное', 'масло кукурузное', 'масло оливковое')
+
+19. Определите сколько всего было продано килограмм яблок.
+SELECT SUM(ClientGoods.Count)
+FROM ClientGoods INNER JOIN SallerGoods
+ON ClientGoods.ID = SallerGoods.ID
+WHERE SallerGoods.Goods LIKE 'Яблоки%'
+
+20. Определите какое количество картофеля закупили кафе.
+SELECT SUM(ClientGoods.Count)
+FROM ClientGoods INNER JOIN Client
+ON ClientGoods.INNClient = Client.INNClient
+INNER JOIN SallerGoods
+ON ClientGoods.ID = SallerGoods.ID
+WHERE Client.Status = 'кафе' AND SallerGoods.Goods = 'Картофель белый'
+
+21. Посчитать сколько клиентов купили перец черный молотый.
+SELECT COUNT(DISTINCT ClientGoods.INNClient)
+FROM ClientGoods INNER JOIN SallerGoods
+ON ClientGoods.ID = SallerGoods.ID
+WHERE SallerGoods.Goods = 'Перец черный молотый'
+
+22. Определить сколько наименований товара было куплено у посредников.
+SELECT COUNT(DISTINCT SallerGoods.Goods)
+FROM SallerGoods INNER JOIN Seller
+ON SallerGoods.INNSeller = Seller.INNSeller
+WHERE Seller.Status = 'посредник'
+
+23. Определить минимальную цену за единицу проданного товара.
+SELECT MIN(CostUnit)
+FROM ClientGoods
+
+24. Определите минимальную сумму на какую было закуплено товара.
+SELECT MIN(CostUnit * Count)
+FROM SallerGoods
+
+25. Определить максимальную сумму за товар, проданный магазинам.
+SELECT MAX(ClientGoods.CostUnit * ClientGoods.Count)
+FROM ClientGoods INNER JOIN Client
+ON ClientGoods.INNClient = Client.INNClient
+WHERE Client.Status = 'магазин'
+
+26. Определить со сколькими фирмами сотрудничает данная фирма.
+SELECT COUNT(*)
+FROM (
+    SELECT Seller AS Firma FROM Seller
+    UNION
+    SELECT Client FROM Client
+)
+
+27. Определить минимальную сумму сделки по закупке товара у производителей.
+SELECT MIN(SallerGoods.CostUnit * SallerGoods.Count)
+FROM SallerGoods INNER JOIN Seller
+ON SallerGoods.INNSeller = Seller.INNSeller
+WHERE Seller.Status LIKE 'производ%'
+
+28. Определить среднюю цену за пачку чая при покупке.
+SELECT AVG(CostUnit)
+FROM SallerGoods
+WHERE Goods LIKE 'Чай%'
+
+29. Определите максимальную сумму прибыли за товар, проданный посреднику.
+SELECT MAX((ClientGoods.CostUnit - SallerGoods.CostUnit) * ClientGoods.Count)
+FROM ClientGoods INNER JOIN Client
+ON ClientGoods.INNClient = Client.INNClient
+INNER JOIN SallerGoods
+ON ClientGoods.ID = SallerGoods.ID
+WHERE Client.Status = 'посредник'
+
+30. Определите минимальную прибыль за товар, купленный у посредника.
+SELECT MIN((ClientGoods.CostUnit - SallerGoods.CostUnit) * ClientGoods.Count)
+FROM ClientGoods INNER JOIN SallerGoods
+ON ClientGoods.ID = SallerGoods.ID
+INNER JOIN Seller
+ON SallerGoods.INNSeller = Seller.INNSeller
+WHERE Seller.Status = 'посредник'
+
+31. Какое количество наименований товара куплено у фирмы.
+SELECT COUNT(DISTINCT ID)
+FROM ClientGoods
+
+32. Сколько в продаже видов печенья.
+SELECT COUNT(DISTINCT Goods)
+FROM SallerGoods
+WHERE Goods LIKE 'Печенье%'
+
+33. Какая максимальная сумма покупки, на которую клиент сделал заказ.
+SELECT MAX(CostUnit * Count)
+FROM ClientGoods
+
+34. Определите среднюю прибыль от перепродажи масла.
+SELECT AVG((ClientGoods.CostUnit - SallerGoods.CostUnit) * ClientGoods.Count)
+FROM ClientGoods INNER JOIN SallerGoods
+ON ClientGoods.ID = SallerGoods.ID
+WHERE SallerGoods.Goods LIKE 'масло%'
+
+35. Со сколькими посредниками сотрудничает фирма.
+SELECT COUNT(*)
+FROM (
+    SELECT Seller AS Firma FROM Seller WHERE Status = 'посредник'
+    UNION
+    SELECT Client FROM Client WHERE Status = 'посредник'
+)
