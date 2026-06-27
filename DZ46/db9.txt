@@ -1,0 +1,112 @@
+1. Студенты какой кафедры и факультета сдавали социологию.
+SELECT DISTINCT G.Kafedra, Kafedra.Decanat
+FROM Student INNER JOIN G
+ON Student.[Group] = G.[Group]
+INNER JOIN Kafedra
+ON G.Kafedra = Kafedra.Kafedra
+INNER JOIN Exzamen
+ON Student.ID_St = Exzamen.Id_St
+WHERE Exzamen.Predmet = 'Социология'
+
+2. Выведите кафедры, список студентов, список студентов в алфавитном порядке.
+SELECT G.Kafedra, Student.FIO
+FROM Student INNER JOIN G
+ON Student.[Group] = G.[Group]
+ORDER BY G.Kafedra, Student.FIO
+
+3. Вывести номера зачеток только студентов физико-технического факультета.
+SELECT Zachetki.N_Z
+FROM Student INNER JOIN G
+ON Student.[Group] = G.[Group]
+INNER JOIN Kafedra
+ON G.Kafedra = Kafedra.Kafedra
+INNER JOIN Zachetki
+ON Student.ID_St = Zachetki.Id_Studenta
+WHERE Kafedra.Decanat = 'Физико-технический'
+
+4. Выведите студентов физико-технического факультета сдавших иностранный язык.
+SELECT Student.FIO, Exzamen.Ball
+FROM Student INNER JOIN G
+ON Student.[Group] = G.[Group]
+INNER JOIN Kafedra
+ON G.Kafedra = Kafedra.Kafedra
+INNER JOIN Exzamen
+ON Student.ID_St = Exzamen.Id_St
+WHERE Kafedra.Decanat = 'Физико-технический'
+AND Exzamen.Predmet = 'Иностр. язык'
+AND Exzamen.Ball IS NOT NULL
+
+5. Подсчитать сколько различных предметов сдавалось в сессию.
+SELECT COUNT(DISTINCT Predmet)
+FROM Exzamen
+
+6. Напишите запрос, который выводит средний балл по экзаменам Васильевой.
+SELECT AVG(Exzamen.Ball)
+FROM Student INNER JOIN Exzamen
+ON Student.ID_St = Exzamen.Id_St
+WHERE Student.FIO LIKE 'Васильева%'
+AND Exzamen.Ball IS NOT NULL
+
+7. Определите сколько человек учится на каждой специальности.
+SELECT Special, COUNT(*)
+FROM Student
+GROUP BY Special
+
+8. Напишите запрос, который покажет все группы физико-технического факультета.
+SELECT DISTINCT Student.[Group]
+FROM Student INNER JOIN G
+ON Student.[Group] = G.[Group]
+INNER JOIN Kafedra
+ON G.Kafedra = Kafedra.Kafedra
+WHERE Kafedra.Decanat = 'Физико-технический'
+
+9. Вывести список фамилий студентов получивших 5 баллов по дифференциальным уравнениям.
+SELECT Student.FIO
+FROM Student INNER JOIN Exzamen
+ON Student.ID_St = Exzamen.Id_St
+WHERE Exzamen.Predmet = 'Дифференциальные уравнения'
+AND Exzamen.Ball = 5
+
+10. Напишите запрос, который покажет, сколько экзаменов сдавал Шутов.
+SELECT COUNT(*)
+FROM Student INNER JOIN Exzamen
+ON Student.ID_St = Exzamen.Id_St
+WHERE Student.FIO LIKE 'Шутов%'
+
+11. Выведите название кафедры студентов, не сдавших хотя бы один экзамен.
+SELECT DISTINCT G.Kafedra
+FROM Student INNER JOIN G
+ON Student.[Group] = G.[Group]
+INNER JOIN Exzamen
+ON Student.ID_St = Exzamen.Id_St
+WHERE Exzamen.Ball IS NULL
+
+12. Подсчитать количество кафедр на каждом факультете.
+SELECT Decanat, COUNT(*)
+FROM Kafedra
+GROUP BY Decanat
+
+13. Подсчитать количество пятерок на физико-математическом факультете.
+SELECT COUNT(*)
+FROM Student INNER JOIN G
+ON Student.[Group] = G.[Group]
+INNER JOIN Kafedra
+ON G.Kafedra = Kafedra.Kafedra
+INNER JOIN Exzamen
+ON Student.ID_St = Exzamen.Id_St
+WHERE Kafedra.Decanat = 'Физико-математический'
+AND Exzamen.Ball = 5
+
+14. Определите номера зачетных книжек группы ФТ151.
+SELECT Zachetki.N_Z
+FROM Student INNER JOIN Zachetki
+ON Student.ID_St = Zachetki.Id_Studenta
+WHERE Student.[Group] = 'ФТ151'
+
+15. Выведите перечень специальностей физико-математического факультета.
+SELECT DISTINCT Student.Special
+FROM Student INNER JOIN G
+ON Student.[Group] = G.[Group]
+INNER JOIN Kafedra
+ON G.Kafedra = Kafedra.Kafedra
+WHERE Kafedra.Decanat = 'Физико-математический'
