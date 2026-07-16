@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="page-intro section">
+  <div class="container page-intro-grid">
+    <div class="reveal">
+      <p class="eyebrow">Контакты</p>
+      <h1>Давайте обсудим вашу учебную цель.</h1>
+    </div>
+    <p class="lead reveal reveal-delay">
+      Напишите или позвоните — расскажем о расписании, поможем выбрать
+      программу и договоримся о знакомстве с преподавателем.
+    </p>
+  </div>
+</section>
+
+<section class="section section-compact">
+  <div class="container contact-layout">
+    <div class="contact-primary">
+      <p class="eyebrow">Написать</p>
+      <a class="contact-email" href="mailto:hello@tochka-koda.ru">hello@tochka-koda.ru</a>
+      <p>Обычно отвечаем в течение учебного дня.</p>
+    </div>
+
+    <dl class="contact-details">
+      <div>
+        <dt>Телефон</dt>
+        <dd><a href="tel:+79003218476">+7 (900) 321-84-76</a></dd>
+      </div>
+      <div>
+        <dt>Адрес</dt>
+        <dd>Москва, Учебный переулок, 7</dd>
+      </div>
+      <div>
+        <dt>Часы работы</dt>
+        <dd>Пн–Сб, 10:00–20:30</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container visit-panel">
+    <div>
+      <p class="eyebrow">Перед первым занятием</p>
+      <h2>Три простых шага</h2>
+    </div>
+    <ol class="visit-steps">
+      <li>
+        <span>01</span>
+        <p>Расскажите, что хотите научиться делать.</p>
+      </li>
+      <li>
+        <span>02</span>
+        <p>Получите рекомендацию по программе.</p>
+      </li>
+      <li>
+        <span>03</span>
+        <p>Познакомьтесь с группой и преподавателем.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="container disclaimer">
+    <strong>Обратите внимание</strong>
+    <p>Название, адрес и контактные данные созданы для демонстрационного учебного проекта.</p>
+  </div>
+</section>
+{% endblock %}
