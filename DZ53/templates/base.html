@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Точка кода — учебная мастерская программирования.">
+  <title>{% block title %}{{ page_title }}{% endblock %} | Точка кода</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{{ url_for('index') }}" aria-label="Точка кода — на главную">
+        <span class="brand-mark" aria-hidden="true">тк</span>
+        <span class="brand-copy">
+          <strong>Точка кода</strong>
+          <small>учебная мастерская</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Основная навигация">
+        <ul>
+          {% for item in navigation %}
+          <li>
+            <a
+              href="{{ url_for(item.endpoint) }}"
+              class="{% if active_page == item.endpoint %}is-active{% endif %}"
+              {% if active_page == item.endpoint %}aria-current="page"{% endif %}
+            >{{ item.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="footer-brand" href="{{ url_for('index') }}">Точка кода</a>
+        <p>Учебный проект на Flask и Jinja2.</p>
+      </div>
+      <div class="footer-meta">
+        <a href="mailto:hello@tochka-koda.ru">hello@tochka-koda.ru</a>
+        <p>&copy; {{ current_year }} Точка кода</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

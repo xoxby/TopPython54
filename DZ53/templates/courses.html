@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="page-intro section">
+  <div class="container page-intro-grid">
+    <div class="reveal">
+      <p class="eyebrow">Курсы</p>
+      <h1>Осваиваем инструменты на практике.</h1>
+    </div>
+    <p class="lead reveal reveal-delay">
+      Программы выстроены последовательно: сначала понятная основа,
+      затем самостоятельные задания и итоговая работа для портфолио.
+    </p>
+  </div>
+</section>
+
+<section class="section section-compact">
+  <div class="container course-list">
+    {% for course in courses %}
+    <article class="course-row">
+      <span class="course-number">{{ course.number }}</span>
+      <div class="course-main">
+        <p class="course-meta">{{ course.duration }} · {{ course.level }}</p>
+        <h2>{{ course.name }}</h2>
+        <p>{{ course.description }}</p>
+      </div>
+      <ul class="tag-list" aria-label="Темы курса">
+        {% for topic in course.topics %}
+        <li>{{ topic }}</li>
+        {% endfor %}
+      </ul>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container note-panel">
+    <p class="eyebrow">Не уверены в выборе?</p>
+    <div>
+      <h2>Расскажите, что уже умеете и чего хотите достичь.</h2>
+      <p>Мы подскажем подходящую программу и ответим на вопросы о формате занятий.</p>
+    </div>
+    <a class="button button-primary" href="{{ url_for('contacts') }}">Задать вопрос</a>
+  </div>
+</section>
+{% endblock %}

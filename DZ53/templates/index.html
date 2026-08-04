@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="hero section">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">Учебная мастерская программирования</p>
+      <h1>Пишем код, который можно показать.</h1>
+      <p class="lead">
+        На каждом курсе теория превращается в работающий проект: программу,
+        сайт или базу данных. Преподаватель помогает пройти путь от первой
+        строки до уверенного результата.
+      </p>
+      <div class="button-row">
+        <a class="button button-primary" href="{{ url_for('courses') }}">Посмотреть курсы</a>
+        <a class="text-link" href="{{ url_for('contacts') }}">Узнать о занятиях <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal reveal-delay" aria-label="Иллюстрация рабочего места программиста">
+      <div class="visual-label">
+        <span>Ближайший старт</span>
+        <strong>3 августа</strong>
+      </div>
+      <img
+        src="{{ url_for('static', filename='images/learning.svg') }}"
+        alt="Ноутбук с программным кодом, книги и комнатное растение"
+      >
+    </div>
+  </div>
+</section>
+
+<section class="section section-compact" aria-label="Коротко о школе">
+  <div class="container fact-strip">
+    <div class="fact">
+      <strong>12–16</strong>
+      <span>человек в группе</span>
+    </div>
+    <div class="fact">
+      <strong>70%</strong>
+      <span>времени — практика</span>
+    </div>
+    <div class="fact fact-wide">
+      <strong>1 проект</strong>
+      <span>в портфолио после каждого курса</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container section-heading split-heading">
+    <div>
+      <p class="eyebrow">Как проходит обучение</p>
+      <h2>От небольшой задачи к своему проекту</h2>
+    </div>
+    <p>
+      Мы не отделяем объяснение от практики: новый инструмент сразу
+      используется в коде, который можно запустить и проверить.
+    </p>
+  </div>
+
+  <div class="container process-list">
+    <article class="process-item">
+      <span class="process-number">01</span>
+      <h3>Разбираем идею</h3>
+      <p>Преподаватель показывает новый приём на коротком и понятном примере.</p>
+    </article>
+    <article class="process-item">
+      <span class="process-number">02</span>
+      <h3>Пишем сами</h3>
+      <p>Выполняем практическую задачу и учимся находить причину ошибок.</p>
+    </article>
+    <article class="process-item">
+      <span class="process-number">03</span>
+      <h3>Собираем проект</h3>
+      <p>Соединяем изученные темы в одну законченную и работающую работу.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="container section-heading split-heading">
+    <div>
+      <p class="eyebrow">Ближайшие программы</p>
+      <h2>Выберите точку старта</h2>
+    </div>
+    <a class="text-link" href="{{ url_for('courses') }}">Все курсы <span aria-hidden="true">→</span></a>
+  </div>
+
+  <div class="container featured-courses">
+    {% for course in featured_courses %}
+    <article class="featured-course">
+      <span class="course-number">{{ course.number }}</span>
+      <div>
+        <p class="course-meta">{{ course.duration }} · {{ course.level }}</p>
+        <h3>{{ course.name }}</h3>
+        <p>{{ course.description }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container cta-panel">
+    <div>
+      <p class="eyebrow">Можно начать с вопроса</p>
+      <h2>Подскажем, какой курс подходит под вашу цель.</h2>
+    </div>
+    <a class="button button-light" href="{{ url_for('contacts') }}">Связаться с нами</a>
+  </div>
+</section>
+{% endblock %}

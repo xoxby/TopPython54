@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="page-intro section">
+  <div class="container page-intro-grid">
+    <div class="reveal">
+      <p class="eyebrow">Преподаватели</p>
+      <h1>Объясняют спокойно. Проверяют внимательно.</h1>
+    </div>
+    <p class="lead reveal reveal-delay">
+      Занятия ведут практикующие специалисты. Они не дают готовый ответ,
+      а помогают понять ход решения и научиться проверять себя.
+    </p>
+  </div>
+</section>
+
+<section class="section section-compact">
+  <div class="container teacher-list">
+    {% for teacher in teachers %}
+    <article class="teacher-row">
+      <div class="teacher-monogram" aria-hidden="true">{{ teacher.initials }}</div>
+      <div class="teacher-name">
+        <p class="course-meta">{{ teacher.experience }}</p>
+        <h2>{{ teacher.name }}</h2>
+        <span>{{ teacher.subject }}</span>
+      </div>
+      <p class="teacher-description">{{ teacher.description }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="container values-layout">
+    <div class="section-heading">
+      <p class="eyebrow">Принципы команды</p>
+      <h2>Ошибка — это часть решения, а не повод остановиться.</h2>
+    </div>
+    <div class="value-list">
+      <article>
+        <span>01</span>
+        <div>
+          <h3>Понятная обратная связь</h3>
+          <p>Объясняем не только что исправить, но и почему код работает именно так.</p>
+        </div>
+      </article>
+      <article>
+        <span>02</span>
+        <div>
+          <h3>Самостоятельность</h3>
+          <p>Учимся читать сообщения об ошибках, пользоваться документацией и проверять гипотезы.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock %}
