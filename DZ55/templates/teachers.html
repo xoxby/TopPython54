@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="page-intro section">
+  <div class="container page-intro-grid">
+    <div class="reveal">
+      <p class="eyebrow">{{ page.eyebrow }}</p>
+      <h1>{{ page.heading }}</h1>
+    </div>
+    <p class="lead reveal reveal-delay">{{ page.lead }}</p>
+  </div>
+</section>
+
+<section class="section section-compact">
+  <div class="container teacher-list">
+    {% for teacher in teachers %}
+    <article class="teacher-row">
+      <div class="teacher-monogram" aria-hidden="true">{{ teacher.initials }}</div>
+      <div class="teacher-name">
+        <p class="course-meta">{{ teacher.experience }}</p>
+        <h2>{{ teacher.name }}</h2>
+        <span>{{ teacher.subject }}</span>
+      </div>
+      <p class="teacher-description">{{ teacher.description }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="container values-layout">
+    <div class="section-heading">
+      <p class="eyebrow">Принципы команды</p>
+      <h2>{{ page.extra_title }}</h2>
+      <p>{{ page.extra_text }}</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

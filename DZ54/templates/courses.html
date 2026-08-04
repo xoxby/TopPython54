@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="page-intro section">
+  <div class="container page-intro-grid">
+    <div class="reveal">
+      <p class="eyebrow">{{ page.eyebrow }}</p>
+      <h1>{{ page.heading }}</h1>
+    </div>
+    <p class="lead reveal reveal-delay">{{ page.lead }}</p>
+  </div>
+</section>
+
+<section class="section section-compact">
+  <div class="container course-list">
+    {% for course in courses %}
+    <article class="course-row">
+      <span class="course-number">{{ course.number }}</span>
+      <div class="course-main">
+        <p class="course-meta">{{ course.duration }} · {{ course.level }}</p>
+        <h2>{{ course.name }}</h2>
+        <p>{{ course.description }}</p>
+      </div>
+      <ul class="tag-list" aria-label="Темы курса">
+        {% for topic in course.topics %}
+        <li>{{ topic }}</li>
+        {% endfor %}
+      </ul>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container note-panel">
+    <p class="eyebrow">Не уверены в выборе?</p>
+    <div>
+      <h2>{{ page.extra_title }}</h2>
+      <p>{{ page.extra_text }}</p>
+    </div>
+    <a class="button button-primary" href="{{ url_for('contacts') }}">Задать вопрос</a>
+  </div>
+</section>
+{% endblock %}

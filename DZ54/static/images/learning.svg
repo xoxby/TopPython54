@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 620" role="img" aria-labelledby="title description">
+  <title id="title">Рабочее место программиста</title>
+  <desc id="description">Ноутбук с кодом, книги, чашка и комнатное растение</desc>
+  <rect width="720" height="620" rx="42" fill="#dfe9e4"/>
+  <circle cx="555" cy="128" r="92" fill="#e8dfcf"/>
+  <path d="M90 472h540v24H90z" fill="#235345"/>
+  <path d="M135 496h22l-18 98h-24l20-98zm428 0h22l20 98h-24l-18-98z" fill="#1c211f"/>
+  <rect x="205" y="160" width="326" height="244" rx="22" fill="#fffefa" stroke="#235345" stroke-width="8"/>
+  <rect x="229" y="184" width="278" height="192" rx="10" fill="#1c211f"/>
+  <circle cx="253" cy="207" r="6" fill="#e8dfcf"/>
+  <circle cx="273" cy="207" r="6" fill="#2f6f5e"/>
+  <circle cx="293" cy="207" r="6" fill="#dfe9e4"/>
+  <path d="M267 250l-22 19 22 19M468 250l22 19-22 19" fill="none" stroke="#dfe9e4" stroke-linecap="round" stroke-linejoin="round" stroke-width="9"/>
+  <path d="M314 251h94M314 280h132M314 309h72" fill="none" stroke="#e8dfcf" stroke-linecap="round" stroke-width="10"/>
+  <path d="M346 404h44v48h-44z" fill="#235345"/>
+  <path d="M291 452h154c12 0 21 9 21 20H270c0-11 9-20 21-20z" fill="#1c211f"/>
+  <path d="M104 382h79v90h-79z" fill="#fffefa" stroke="#235345" stroke-width="6"/>
+  <path d="M114 400h59M114 419h44M114 438h51" fill="none" stroke="#e8dfcf" stroke-linecap="round" stroke-width="7"/>
+  <path d="M542 431h74v41h-74z" fill="#e8dfcf" stroke="#235345" stroke-width="6"/>
+  <path d="M616 439h14c24 0 24 27 0 27h-14" fill="none" stroke="#235345" stroke-width="6"/>
+  <path d="M110 362h104v20H110zM123 339h91v23h-91z" fill="#2f6f5e"/>
+  <path d="M580 282c-38 40-42 99-18 149h32c27-51 25-108-14-149z" fill="#2f6f5e"/>
+  <path d="M578 303c-28-44-72-52-93-43 5 39 37 66 88 71M588 332c21-48 64-64 87-59 2 40-25 72-75 85" fill="#2f6f5e" stroke="#235345" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <path d="M553 414h56l-8 58h-40z" fill="#fffefa" stroke="#235345" stroke-width="6"/>
+</svg>

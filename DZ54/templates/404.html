@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="error-page section">
+  <div class="container error-layout">
+    <p class="error-code" aria-hidden="true">404</p>
+    <div>
+      <p class="eyebrow">Страница не найдена</p>
+      <h1>Похоже, такого адреса нет.</h1>
+      <p class="lead">Проверьте адрес или вернитесь на главную страницу сайта.</p>
+      <a class="button button-primary" href="{{ url_for('index') }}">Вернуться на главную</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

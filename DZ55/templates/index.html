@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content reveal">
+      <p class="eyebrow">{{ page.eyebrow }}</p>
+      <h1>{{ page.heading }}</h1>
+      <p class="lead">{{ page.lead }}</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="{{ url_for('courses') }}">Посмотреть курсы</a>
+        <a class="button button-secondary" href="{{ url_for('contacts') }}">Задать вопрос</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal reveal-delay" aria-hidden="true">
+      <img src="{{ url_for('static', filename='images/learning.svg') }}" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="section section-compact">
+  <div class="container section-heading">
+    <p class="eyebrow">Из базы данных</p>
+    <h2>{{ page.extra_title }}</h2>
+    <p>{{ page.extra_text }}</p>
+  </div>
+</section>
+
+<section class="section section-tinted">
+  <div class="container course-grid">
+    {% for course in featured_courses %}
+    <article class="course-card">
+      <span class="course-number">{{ course.number }}</span>
+      <p class="course-meta">{{ course.duration }} · {{ course.level }}</p>
+      <h2>{{ course.name }}</h2>
+      <p>{{ course.description }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
